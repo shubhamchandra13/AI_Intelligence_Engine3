@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Intelligence Terminal Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <h1>AI Intelligence Terminal</h1>
+          <p class="subtitle">Realtime mirror of the live CLI report</p>
+        </div>
+        <div class="header-actions">
+          <span id="status-label" class="status-label">Waiting for data…</span>
+          <button id="refresh-btn" type="button">Refresh now</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="card summary-card">
+          <h2>Live Snapshot</h2>
+          <div id="summary-grid" class="kv-grid"></div>
+        </section>
+
+        <section class="card decision-card">
+          <h2>Decision Output</h2>
+          <div id="decision-output"></div>
+        </section>
+
+        <section class="card stats-card">
+          <h2>Performance Tables</h2>
+          <div id="performance-tables" class="table-stack"></div>
+        </section>
+
+        <section class="card stats-card">
+          <h2>Live Intelligence</h2>
+          <div id="intelligence-grid" class="kv-grid"></div>
+        </section>
+
+        <section class="card reports-card">
+          <h2>Intelligence Reports</h2>
+          <div class="search-box">
+            <input type="text" id="report-search" placeholder="Search reports (title, content, category)..." />
+          </div>
+          <div id="reports-list" class="table-stack"></div>
+        </section>
+
+        <section class="card stats-card">
+          <h2>Open Positions</h2>
+          <div id="open-positions" class="table-stack"></div>
+        </section>
+
+        <section class="card stats-card">
+          <h2>Probability Model</h2>
+          <div id="probability-blocks" class="table-stack"></div>
+        </section>
+
+        <section class="card ai-chat-card">
+          <h2>🤖 AI Intelligence Assistant (Gemini)</h2>
+          <div id="chat-window" class="chat-window">
+            <div id="chat-history" class="chat-history">
+              <p class="bot-msg">Hello! I am your AI Assistant. How can I help you today?</p>
+            </div>
+            <div class="chat-input-area">
+              <input type="text" id="chat-input" placeholder="Ask about trades, system health or bugs..." />
+              <button id="chat-send-btn">Send</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

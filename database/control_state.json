@@ -1,0 +1,6 @@
+{
+  "overrides": {
+    "DYNAMIC_MIN_CONFIDENCE": 10
+  },
+  "actions": []
+}

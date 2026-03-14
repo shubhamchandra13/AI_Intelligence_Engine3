@@ -1,0 +1,22 @@
+{
+    "epdf.pub_trading-for-a-living.pdf": [
+        "Discipline is the key: The goal of a successful trader is to make the best trades, not the most money.",
+        "Use the Triple Screen system: Never trade in the direction of the daily trend without checking the weekly trend first.",
+        "Avoid trading when the market is in a choppy, sideways range (Range-Bound Protection)."
+    ],
+    "NSE Stock Market Book.pdf": [
+        "In the Indian market, always follow the flow of Institutional Investors (FII/DII logic).",
+        "Wait for the opening range breakout (ORB) before committing to a major trend direction.",
+        "Volume confirmation is mandatory: A price move without volume is a trap."
+    ],
+    "options-trading-strategies-complete-guide-danes-scott-j-.pdf": [
+        "Theta is your enemy as an option buyer: Avoid buying options with less than 5 days to expiry (unless scalping).",
+        "Always look for high Implied Volatility (IV) expansion setups for quick option price jumps.",
+        "Risk/Reward alignment: Only enter if the potential profit is at least 2x the stop loss."
+    ],
+    "Technical-Analysis.pdf": [
+        "Break of Structure (BOS) confirms the true trend change; wait for the first pullback.",
+        "Support and Resistance levels are 'Zones,' not precise numbers; wait for a sweep and rejection.",
+        "Use Candlestick patterns (like Pin Bars/Engulfing) only at key institutional supply/demand zones."
+    ]
+}

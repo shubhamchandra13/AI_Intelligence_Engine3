@@ -1,0 +1,1019 @@
+{
+  "analysis_map": {
+    "BANKNIFTY": {
+      "spot": 53757.85,
+      "structure": {
+        "bias": "Bearish",
+        "structure": "LH-LL Structure",
+        "bos": false,
+        "choch": false,
+        "structure_score": 70
+      },
+      "regime": {
+        "trend": "RANGE",
+        "volatility": "NORMAL_VOL",
+        "regime": "RANGE_NORMAL_VOL",
+        "prediction": "STABLE",
+        "is_anomaly": false
+      },
+      "confidence": {
+        "confidence": 28.336000000000002,
+        "grade": "RETAIL (C)",
+        "details": {
+          "structure": 25,
+          "liquidity": 15,
+          "fvg": 5,
+          "mtf": 10,
+          "hmm_alignment": -10,
+          "pca_denoising": 0,
+          "lstm_lookahead": 25,
+          "anomaly_alert": "NO (SAFE)"
+        }
+      },
+      "liquidity": {
+        "status": "No Sweep",
+        "strength": 0
+      },
+      "fvg": {
+        "status": "Bearish FVG",
+        "zone_low": 53779.65,
+        "zone_high": 53813.6,
+        "strength": 0.99,
+        "in_zone": "False"
+      },
+      "vsa": {
+        "vsa_bias": "NEUTRAL",
+        "vsa_signal": "Normal",
+        "strength": 50,
+        "volume_ratio": 1.0
+      },
+      "indicator_stack": {
+        "available": true,
+        "score": 20.0,
+        "bias": "BEARISH",
+        "score_adjustment": -3.6,
+        "confluence": 100.0,
+        "active_timeframes": 5,
+        "requested_timeframes": [
+          "1T",
+          "3T",
+          "5T",
+          "15T",
+          "30T"
+        ],
+        "missing_timeframes": [],
+        "compatibility_percent": 100.0,
+        "timeframes": {
+          "1T": {
+            "available": true,
+            "score": 23.0,
+            "bias": "BEARISH",
+            "score_adjustment": -3.24,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": true,
+              "stochastic_bull": false,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": 6.5107530686068,
+              "stoch_k": 93.68932038835088,
+              "stoch_d": 57.32209429320292,
+              "vwap": null,
+              "ema9": 53737.37716899321,
+              "ema21": 53789.36516789625,
+              "ema50": 53802.62654286164,
+              "ema200": 53914.36239785433
+            }
+          },
+          "3T": {
+            "available": true,
+            "score": 21.0,
+            "bias": "BEARISH",
+            "score_adjustment": -3.48,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": false,
+              "stochastic_bull": true,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": -13.671760274214286,
+              "stoch_k": 29.799279464745037,
+              "stoch_d": 14.796748018569469,
+              "vwap": null,
+              "ema9": 53759.724869465004,
+              "ema21": 53850.62730382916,
+              "ema50": 53870.9897284582,
+              "ema200": 54399.2217196665
+            }
+          },
+          "5T": {
+            "available": true,
+            "score": 13.0,
+            "bias": "BEARISH",
+            "score_adjustment": -4.44,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": false,
+              "stochastic_bull": true,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "BEARISH",
+              "macd_hist": -12.495860543828094,
+              "stoch_k": 20.53434212081786,
+              "stoch_d": 11.35028243612326,
+              "vwap": null,
+              "ema9": 53781.14683728651,
+              "ema21": 53910.69844880164,
+              "ema50": 53964.3470796897,
+              "ema200": 54779.59873492772
+            }
+          },
+          "15T": {
+            "available": true,
+            "score": 31.0,
+            "bias": "BEARISH",
+            "score_adjustment": -2.28,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": true,
+              "stochastic_bull": false,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "BULLISH",
+              "macd_hist": 39.17252743207729,
+              "stoch_k": 20.781488757913806,
+              "stoch_d": 23.327413143079227,
+              "vwap": null,
+              "ema9": 53845.09053922579,
+              "ema21": 54397.9516838762,
+              "ema50": 54559.460453231506,
+              "ema200": 55333.934974259144
+            }
+          },
+          "30T": {
+            "available": true,
+            "score": 9.0,
+            "bias": "BEARISH",
+            "score_adjustment": -4.92,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": false,
+              "stochastic_bull": false,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": -11.206564339244494,
+              "stoch_k": 6.18985695708741,
+              "stoch_d": 10.773956356259703,
+              "vwap": null,
+              "ema9": 53908.2324388117,
+              "ema21": 54883.358700565914,
+              "ema50": 55030.09703326405,
+              "ema200": 55427.41520482912
+            }
+          }
+        }
+      },
+      "relative_score": -25.12,
+      "ml_prediction": {
+        "available": true,
+        "win_probability": 3.37,
+        "base_model_probability": 0.44,
+        "nn_contribution": "Neural-Enhanced",
+        "regime_profile_used": true,
+        "regime_profile": {
+          "sample_size": 10,
+          "win_probability": 20.0,
+          "expectancy_r": -0.572,
+          "avg_pnl": -2039.26,
+          "quality_probability": 0.0
+        },
+        "model_version": "2026-03-14T00:22:29.562090",
+        "metrics": {
+          "win_model": {
+            "accuracy": 0.1333,
+            "brier": 0.7975,
+            "score": -0.1458
+          },
+          "meta_model": {
+            "accuracy": 1.0,
+            "brier": 0.0,
+            "score": 1.0
+          }
+        },
+        "samples_total": 79
+      },
+      "high": 57097.05,
+      "low": 53675.7,
+      "iv_data": {
+        "current_iv": 0.0,
+        "iv_regime": "NORMAL_IV",
+        "tradable": true
+      },
+      "oi_data": {
+        "bias": "NEUTRAL"
+      },
+      "risk": 0.44,
+      "ofi_data": {
+        "bias": "NEUTRAL",
+        "ofi_index": 0.0,
+        "velocity": 0.0,
+        "absorption": "NONE",
+        "imbalance_ratio": 5.0,
+        "liquidity_void": false,
+        "hft_alert": "False"
+      },
+      "vol_forecast": {
+        "forecast_vol": 707.098,
+        "regime": "EXPANDING_SHOCK",
+        "clustering_ratio": 1424.69,
+        "risk_multiplier": 1424.69,
+        "target_multiplier": 1.0
+      },
+      "reg_v2": {
+        "regime": "STEADY_TRENDING",
+        "risk_profile": "MODERATE",
+        "target_profile": "HIGH",
+        "confidence": 0.46,
+        "features": {
+          "momentum": 1.45,
+          "volatility": -1.57,
+          "volume_pressure": 0.0
+        }
+      }
+    },
+    "NIFTY": {
+      "spot": 23151.1,
+      "structure": {
+        "bias": "Transition",
+        "structure": "Structure Transition",
+        "bos": false,
+        "choch": true,
+        "structure_score": 55
+      },
+      "regime": {
+        "trend": "RANGE",
+        "volatility": "LOW_VOL",
+        "regime": "RANGE_LOW_VOL",
+        "prediction": "STABLE",
+        "is_anomaly": false
+      },
+      "confidence": {
+        "confidence": 6.93,
+        "grade": "AVOID",
+        "details": {
+          "structure": 0,
+          "liquidity": 15,
+          "fvg": 5,
+          "mtf": 10,
+          "hmm_alignment": 10,
+          "pca_denoising": 0,
+          "lstm_lookahead": -15,
+          "anomaly_alert": "NO (SAFE)"
+        }
+      },
+      "liquidity": {
+        "status": "No Sweep",
+        "strength": 0
+      },
+      "fvg": {
+        "status": "No FVG",
+        "strength": 0,
+        "in_zone": false
+      },
+      "vsa": {
+        "vsa_bias": "NEUTRAL",
+        "vsa_signal": "Normal",
+        "strength": 50,
+        "volume_ratio": 1.0
+      },
+      "indicator_stack": {
+        "available": true,
+        "score": 30.9,
+        "bias": "BEARISH",
+        "score_adjustment": -2.29,
+        "confluence": 100.0,
+        "active_timeframes": 5,
+        "requested_timeframes": [
+          "1T",
+          "3T",
+          "5T",
+          "15T",
+          "30T"
+        ],
+        "missing_timeframes": [],
+        "compatibility_percent": 100.0,
+        "timeframes": {
+          "1T": {
+            "available": true,
+            "score": 39.0,
+            "bias": "BEARISH",
+            "score_adjustment": -1.32,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": true,
+              "stochastic_bull": false,
+              "supertrend_bull": true,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": 3.332769990271389,
+              "stoch_k": 91.65487977369955,
+              "stoch_d": 85.2347746621058,
+              "vwap": null,
+              "ema9": 23160.35115054647,
+              "ema21": 23162.640369326138,
+              "ema50": 23165.567958847445,
+              "ema200": 23215.780933195143
+            }
+          },
+          "3T": {
+            "available": true,
+            "score": 21.0,
+            "bias": "BEARISH",
+            "score_adjustment": -3.48,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": false,
+              "stochastic_bull": true,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": -0.3556479383137212,
+              "stoch_k": 52.4027459954258,
+              "stoch_d": 34.97817395105633,
+              "vwap": null,
+              "ema9": 23158.95403777525,
+              "ema21": 23184.600556673344,
+              "ema50": 23195.100277255893,
+              "ema200": 23404.20194933675
+            }
+          },
+          "5T": {
+            "available": true,
+            "score": 35.0,
+            "bias": "BEARISH",
+            "score_adjustment": -1.8,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": true,
+              "stochastic_bull": true,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": 1.2198969564396798,
+              "stoch_k": 34.30711610487109,
+              "stoch_d": 24.20724094881598,
+              "vwap": null,
+              "ema9": 23161.850487857657,
+              "ema21": 23214.06502873255,
+              "ema50": 23237.535871274125,
+              "ema200": 23537.17296142331
+            }
+          },
+          "15T": {
+            "available": true,
+            "score": 43.0,
+            "bias": "NEUTRAL",
+            "score_adjustment": -0.84,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": true,
+              "stochastic_bull": true,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "BULLISH",
+              "macd_hist": 11.033857489418907,
+              "stoch_k": 23.239297691852943,
+              "stoch_d": 20.64155164466011,
+              "vwap": null,
+              "ema9": 23184.98397560118,
+              "ema21": 23403.620438187736,
+              "ema50": 23461.14124816343,
+              "ema200": 23724.518602869157
+            }
+          },
+          "30T": {
+            "available": true,
+            "score": 9.0,
+            "bias": "BEARISH",
+            "score_adjustment": -4.92,
+            "signals": {
+              "ema_cross_bull": false,
+              "ema_trend_bull": false,
+              "vwap_bull": false,
+              "macd_bull": false,
+              "stochastic_bull": false,
+              "supertrend_bull": false,
+              "fib_bias": "NONE",
+              "rsi_divergence": "NONE",
+              "macd_hist": -11.643600150564765,
+              "stoch_k": 10.373370905248597,
+              "stoch_d": 11.501041249875769,
+              "vwap": null,
+              "ema9": 23215.535438159197,
+              "ema21": 23573.662551313366,
+              "ema50": 23623.830148875706,
+              "ema200": 23752.004503204964
+            }
+          }
+        }
+      },
+      "relative_score": -19.0,
+      "ml_prediction": {
+        "available": true,
+        "win_probability": 0.06,
+        "base_model_probability": 0.06,
+        "nn_contribution": "Neural-Enhanced",
+        "regime_profile_used": false,
+        "regime_profile": null,
+        "model_version": "2026-03-14T00:22:29.562090",
+        "metrics": {
+          "win_model": {
+            "accuracy": 0.1333,
+            "brier": 0.7975,
+            "score": -0.1458
+          },
+          "meta_model": {
+            "accuracy": 1.0,
+            "brier": 0.0,
+            "score": 1.0
+          }
+        },
+        "samples_total": 79
+      },
+      "high": 24303.8,
+      "low": 23112.0,
+      "iv_data": {
+        "current_iv": 0.0,
+        "iv_regime": "NORMAL_IV",
+        "tradable": true
+      },
+      "oi_data": {
+        "bias": "NEUTRAL"
+      },
+      "risk": 0.5,
+      "ofi_data": {
+        "bias": "NEUTRAL",
+        "ofi_index": 0.0,
+        "velocity": 0.0,
+        "absorption": "NONE",
+        "imbalance_ratio": 5.0,
+        "liquidity_void": false,
+        "hft_alert": "False"
+      },
+      "vol_forecast": {
+        "forecast_vol": 707.098,
+        "regime": "EXPANDING_SHOCK",
+        "clustering_ratio": 1619.52,
+        "risk_multiplier": 1619.52,
+        "target_multiplier": 1.0
+      },
+      "reg_v2": {
+        "regime": "STEADY_TRENDING",
+        "risk_profile": "MODERATE",
+        "target_profile": "HIGH",
+        "confidence": 0.41,
+        "features": {
+          "momentum": 1.3,
+          "volatility": -1.8,
+          "volume_pressure": 0.0
+        }
+      }
+    }
+  },
+  "best_index": "NIFTY",
+  "news_sentiment": -0.39,
+  "news_items": [
+    {
+      "text": "Spirit Airlines to shrink fleet to one\u2011third of pre\u2011bankruptcy size",
+      "timestamp": 1773460485.3495529
+    },
+    {
+      "text": "Stellantis wins dismissal of shareholder lawsuit in US over \u2019channel stuffing\u2019",
+      "timestamp": 1773460485.3495529
+    },
+    {
+      "text": "Digg cuts jobs after facing AI bot surge",
+      "timestamp": 1773460485.3495529
+    },
+    {
+      "text": "Trump administration set to receive $10 billion fee for brokering TikTok deal, WSJ reports",
+      "timestamp": 1773460485.3495529
+    },
+    {
+      "text": "Berkshire awards CEO Abel $22 million for 2025, confirms it resumed stock buybacks",
+      "timestamp": 1773460485.3495529
+    },
+    {
+      "text": "Storms cut power to over 1 million customers in US Midwest, Mid-Atlantic; Ohio hardest hit",
+      "timestamp": 1773460485.3482268
+    },
+    {
+      "text": "Exclusive-Meta planning sweeping layoffs as AI costs mount",
+      "timestamp": 1773460485.3482268
+    },
+    {
+      "text": "BP revises Whiting oil refinery contract offer after union members reject proposal",
+      "timestamp": 1773460485.3482268
+    },
+    {
+      "text": "Wall Street posts three-week losing streak as Iran war batters sentiment",
+      "timestamp": 1773460485.3482268
+    },
+    {
+      "text": "Apple MacBook Neo emerges as company\u2019s most repairable laptop in more than a decade",
+      "timestamp": 1773460485.3482268
+    },
+    {
+      "text": "Nifty down 2%: Deepak Gupta's sector-by-sector playbook for what to buy, hold, and trim",
+      "timestamp": 1773459000.0
+    },
+    {
+      "text": "US-Iran war: Russia, China to Israel \u2014 Who wants the Strait of Hormuz to open soon?",
+      "timestamp": 1773454132.0
+    },
+    {
+      "text": "Is Polycab India stock headed towards  \u20b96,000?",
+      "timestamp": 1773451852.0
+    },
+    {
+      "text": "Stock market mock trading today: BSE to conduct market-wide drill for equity, commodity &amp; currency segments",
+      "timestamp": 1773448251.0
+    },
+    {
+      "text": "US opens trade probe into India, EU, China and others over forced labour policies",
+      "timestamp": 1773446400.0
+    },
+    {
+      "text": "Stocks to buy under  \u20b9200: Mehul Kothari of Anand Rathi recommends three shares to buy or sell",
+      "timestamp": 1773445450.0
+    },
+    {
+      "text": "Oaktree\u2019s Poli Says Bigger Price Moves in Credit Are Coming",
+      "timestamp": 1773439091.0
+    },
+    {
+      "text": "EM Eyes Back-to-Back Weekly Slump as Iran War Sparks Risk-Off",
+      "timestamp": 1773435898.0
+    },
+    {
+      "text": "India protects key sectors under 'powerful' US trade deal, says Piyush Goyal",
+      "timestamp": 1773428519.0
+    },
+    {
+      "text": "European Stocks Erase Losses as Oil Slips Below $100 a Barrel",
+      "timestamp": 1773428263.0
+    },
+    {
+      "text": "Yields mixed as PCE eases fears but oil keeps markets cautious",
+      "timestamp": 1773428263.0
+    },
+    {
+      "text": "Fitch raises India FY26 GDP growth forecast to 7.5% on strong domestic demand",
+      "timestamp": 1773427631.0
+    },
+    {
+      "text": "Forex reserves decline by $12 billion as volatility hits asset valuations",
+      "timestamp": 1773427527.0
+    },
+    {
+      "text": "Dollar rises broadly as investors weigh Middle East risks",
+      "timestamp": 1773427516.0
+    },
+    {
+      "text": "Wall St drops, set for weekly loss as war on Iran fuels inflation worries",
+      "timestamp": 1773427022.0
+    },
+    {
+      "text": "Over Rs 15k cr disbursed to exporters till December 25 this fiscal under duty refund scheme RoDTEP",
+      "timestamp": 1773423331.0
+    },
+    {
+      "text": "India reduces minimum public share float, paving way for NSE, Jio listings",
+      "timestamp": 1773423269.0
+    },
+    {
+      "text": "SEBI slaps  \u20b910 lakh fine on Anand Rathi Share and Stock Brokers for cybersecurity violations",
+      "timestamp": 1773423064.0
+    },
+    {
+      "text": "India, UK trade pact may come into effect in one month from now: Piyush Goyal",
+      "timestamp": 1773422830.0
+    },
+    {
+      "text": "India\u2019s imports from China slowed overtime, exports grow faster: Govt tells Parliament",
+      "timestamp": 1773422776.0
+    },
+    {
+      "text": "Pending MGNREGS dues to states Rs 9,300 crore in FY26: Govt to Rajya Sabha",
+      "timestamp": 1773421815.0
+    },
+    {
+      "text": "Pulse of the Street: Indian stocks log worst weekly fall in six years as West Asia conflict drags on",
+      "timestamp": 1773421501.0
+    },
+    {
+      "text": "GSP Crop Science raises  \u20b9120 crore from anchor investors ahead of IPO",
+      "timestamp": 1773419906.0
+    },
+    {
+      "text": "US stocks today: S&amp;P 500, Nasdaq slip as investors assess data, Iran war fallout",
+      "timestamp": 1773419629.0
+    },
+    {
+      "text": "Om Power Transmission gets SEBI nod for raising funds through IPO launch. Details here",
+      "timestamp": 1773418676.0
+    },
+    {
+      "text": "US, India moving very close to finalising critical minerals agreement: Envoy Sergio Gor",
+      "timestamp": 1773418486.0
+    },
+    {
+      "text": "Rupee closes at new low at 92.46 against the US dollar, down 0.7% this week",
+      "timestamp": 1773417835.0
+    },
+    {
+      "text": "IDBI Bank stake sale may be scrapped by government after low bids: Report",
+      "timestamp": 1773417700.0
+    },
+    {
+      "text": "India to scrap bids for majority stake in IDBI Bank: Report",
+      "timestamp": 1773417653.0
+    },
+    {
+      "text": "RBI injects Rs 50,000 crore via OMO; liquidity move comes ahead of advance tax, GST outflows",
+      "timestamp": 1773417642.0
+    },
+    {
+      "text": "US Stocks: US consumer staple stocks lose sheen as lofty valuations meet gloomy earnings outlook",
+      "timestamp": 1773417516.0
+    },
+    {
+      "text": "Why is the dollar profiting from Middle East war?",
+      "timestamp": 1773415432.0
+    },
+    {
+      "text": "Radhakishan Damani sells 16 lakh shares in Tata Motors PV via block deal",
+      "timestamp": 1773413783.0
+    },
+    {
+      "text": "US Stocks: US Fed's preferred inflation gauge edges down",
+      "timestamp": 1773411077.0
+    },
+    {
+      "text": "Global Stocks: Echoes of 2022? Markets look back to Russia play book for Middle East conflict",
+      "timestamp": 1773410766.0
+    },
+    {
+      "text": "US Stocks: Adobe shares drop further as CEO exit casts doubts over AI strategy",
+      "timestamp": 1773410215.0
+    },
+    {
+      "text": "D-Street investors become poorer by Rs 33.68 lakh cr since beginning of West Asia conflict",
+      "timestamp": 1773409969.0
+    },
+    {
+      "text": "Global sugar prices slide on Brazil surplus, India outlook stable: ICRA",
+      "timestamp": 1773409359.0
+    },
+    {
+      "text": "US stocks today: US stocks climb as oil prices pull back amid Middle East war",
+      "timestamp": 1773408870.0
+    },
+    {
+      "text": "Sebi imposes Rs 10 lakh fine on Anand Rathi for violation of stock brokers' norms",
+      "timestamp": 1773407285.0
+    },
+    {
+      "text": "India\u2019s forex reserves fall $11.68 billion to $716.81 billion, biggest drop in over a year",
+      "timestamp": 1773406794.0
+    },
+    {
+      "text": "India rebuts reports of pause in US trade talks",
+      "timestamp": 1773397433.0
+    },
+    {
+      "text": "Lok Sabha approves additional spending of Rs 2.01 lakh crore for FY 2025-26",
+      "timestamp": 1773396814.0
+    },
+    {
+      "text": "India stands tall in shaky world economy as Fitch lifts FY26 growth view to 7.5%",
+      "timestamp": 1773396363.0
+    },
+    {
+      "text": "China announces anti-dumping duty on certain rubber imports from India, Japan, Canada",
+      "timestamp": 1773390458.0
+    },
+    {
+      "text": "Buy HDFC Bank; target of Rs 1,850: ICICI Securities",
+      "timestamp": 1713859862.0
+    },
+    {
+      "text": "Buy Tejas Networks; target of Rs 1100: Emkay Global Financial",
+      "timestamp": 1713859607.0
+    },
+    {
+      "text": "Buy Bajaj Finance; target of Rs 9000: Emkay Global Financial",
+      "timestamp": 1713859604.0
+    },
+    {
+      "text": "Buy Bajaj Finance; target of Rs 9000: Emkay Global Financial",
+      "timestamp": 1713859604.0
+    },
+    {
+      "text": "Reduce Persistent Systems; target of Rs 3700: Emkay Global Financial",
+      "timestamp": 1713858991.0
+    },
+    {
+      "text": "Reduce Aditya Birla Fashion and Retail; target of Rs 230: Emkay Global Financial",
+      "timestamp": 1713858753.0
+    },
+    {
+      "text": "Reduce Wipro; target of Rs 410: ICICI Securities",
+      "timestamp": 1713855128.0
+    },
+    {
+      "text": "Buy HDFC Life Insurance Company; target of Rs 739: ICICI Securities",
+      "timestamp": 1713854152.0
+    },
+    {
+      "text": "Buy Patel Engineering; target of Rs 80: ICICI Direct",
+      "timestamp": 1713854143.0
+    },
+    {
+      "text": "Accumulate Infosys; target of Rs 1531: KR Choksey",
+      "timestamp": 1713854106.0
+    },
+    {
+      "text": "Buy Jindal Drilling and Industries; target of Rs 960: Anand Rathi",
+      "timestamp": 1713854068.0
+    },
+    {
+      "text": "Buy Navneet Education; target of Rs 182: Prabhudas Lilladher",
+      "timestamp": 1713854047.0
+    },
+    {
+      "text": "Sell Indus Tower; target of Rs 260: ICICI Securities",
+      "timestamp": 1713853613.0
+    },
+    {
+      "text": "Buy City Union Bank; target of Rs 170: ICICI Securities",
+      "timestamp": 1713853011.0
+    },
+    {
+      "text": "Buy Hatsun Agro Products; target of Rs 1190: ICICI Securities",
+      "timestamp": 1713853003.0
+    }
+  ],
+  "db_stats": {
+    "total_trades": 79,
+    "win_rate": 64.56,
+    "expectancy": 0.81,
+    "max_drawdown": -59.0,
+    "growth_rate": NaN,
+    "best_confidence_zone": "70-75",
+    "regime_stats": {
+      "DOWNTREND_HIGH_VOL": -1248.0600000000002,
+      "DOWNTREND_LOW_VOL": 1477.45,
+      "RANGE_HIGH_VOL": 2479.499999999999,
+      "RANGE_NORMAL_VOL": -2039.2649999999999
+    },
+    "iv_stats": {
+      "HIGH_IV": 2423.9999999999986,
+      "LOW_IV": -503.50000000000017,
+      "NORMAL_IV": 459.74999999999966,
+      "UNKNOWN": -9347.999999999996
+    },
+    "probability_model": {
+      "global": {
+        "sample_size": 79,
+        "win_probability": 64.56,
+        "expectancy_r": 0.653
+      },
+      "by_confidence": {
+        "30-40": {
+          "sample_size": 20,
+          "win_rate_raw": 5.0,
+          "win_probability": 34.78,
+          "expectancy_r": -0.124,
+          "avg_pnl": -2044.19,
+          "model_confidence": 75.78
+        },
+        "40-50": {
+          "sample_size": 40,
+          "win_rate_raw": 90.0,
+          "win_probability": 81.52,
+          "expectancy_r": 1.301,
+          "avg_pnl": 1113.46,
+          "model_confidence": 90.6
+        },
+        "50-60": {
+          "sample_size": 3,
+          "win_rate_raw": 66.67,
+          "win_probability": 64.83,
+          "expectancy_r": 0.541,
+          "avg_pnl": -999.75,
+          "model_confidence": 53.86
+        },
+        "60-70": {
+          "sample_size": 4,
+          "win_rate_raw": 0.0,
+          "win_probability": 53.8,
+          "expectancy_r": 0.377,
+          "avg_pnl": -2132.4,
+          "model_confidence": 56.0
+        },
+        "70-80": {
+          "sample_size": 1,
+          "win_rate_raw": 100.0,
+          "win_probability": 66.24,
+          "expectancy_r": 0.717,
+          "avg_pnl": 2289.3,
+          "model_confidence": 48.0
+        },
+        "80+": {
+          "sample_size": 11,
+          "win_rate_raw": 100.0,
+          "win_probability": 77.13,
+          "expectancy_r": NaN,
+          "avg_pnl": 170.86,
+          "model_confidence": 66.53
+        }
+      },
+      "by_regime": {
+        "DOWNTREND_HIGH_VOL": {
+          "sample_size": 5,
+          "win_rate_raw": 20.0,
+          "win_probability": 55.65,
+          "expectancy_r": 0.442,
+          "avg_pnl": -1248.06,
+          "model_confidence": 57.89
+        },
+        "DOWNTREND_LOW_VOL": {
+          "sample_size": 2,
+          "win_rate_raw": 100.0,
+          "win_probability": 67.78,
+          "expectancy_r": 0.775,
+          "avg_pnl": 1477.45,
+          "model_confidence": 51.31
+        },
+        "RANGE_HIGH_VOL": {
+          "sample_size": 2,
+          "win_rate_raw": 100.0,
+          "win_probability": 67.78,
+          "expectancy_r": 0.672,
+          "avg_pnl": 2479.5,
+          "model_confidence": 51.31
+        },
+        "RANGE_NORMAL_VOL": {
+          "sample_size": 10,
+          "win_rate_raw": 20.0,
+          "win_probability": 49.7,
+          "expectancy_r": 0.244,
+          "avg_pnl": -2039.26,
+          "model_confidence": 65.3
+        }
+      },
+      "by_iv_regime": {
+        "HIGH_IV": {
+          "sample_size": 1,
+          "win_rate_raw": 100.0,
+          "win_probability": 66.24,
+          "expectancy_r": 0.664,
+          "avg_pnl": 2424.0,
+          "model_confidence": 48.0
+        },
+        "LOW_IV": {
+          "sample_size": 3,
+          "win_rate_raw": 33.33,
+          "win_probability": 60.48,
+          "expectancy_r": 0.548,
+          "avg_pnl": -503.5,
+          "model_confidence": 53.86
+        },
+        "NORMAL_IV": {
+          "sample_size": 4,
+          "win_rate_raw": 50.0,
+          "win_probability": 62.13,
+          "expectancy_r": 0.569,
+          "avg_pnl": 459.75,
+          "model_confidence": 56.0
+        },
+        "UNKNOWN": {
+          "sample_size": 1,
+          "win_rate_raw": 0.0,
+          "win_probability": 61.48,
+          "expectancy_r": 0.525,
+          "avg_pnl": -9348.0,
+          "model_confidence": 48.0
+        }
+      }
+    },
+    "hive_sync": true,
+    "hive_trades": 692
+  },
+  "system_status": "RUNNING",
+  "neural_ready": true,
+  "ml_ready": true,
+  "scan_count": 1100,
+  "ob_data": {},
+  "smt_status": {
+    "status": "SYNCED",
+    "reason": "Synced"
+  },
+  "expiry": "2026-03-24",
+  "current_iv": 0.0,
+  "iv_regime": "NORMAL_IV",
+  "theta_risk": "SAFE",
+  "entry_paused": false,
+  "rotation_reason": "Strongest Index (Score -19.0)",
+  "strategy_status": "WAITING FOR SETUP...",
+  "why_no_trade": [],
+  "macro_status": {
+    "macro_score": -100,
+    "macro_bias": "GLOBAL_BEARISH",
+    "details": {
+      "Nasdaq": {
+        "price": 22102.9,
+        "change": -1.17
+      },
+      "USDINR": {
+        "price": 92.49,
+        "change": 0.31
+      },
+      "CrudeOil": {
+        "price": 103.86,
+        "change": 8.21
+      },
+      "Gold": {
+        "price": 5023.1,
+        "change": -2.41
+      },
+      "Bitcoin": {
+        "price": 71102.35,
+        "change": -0.4
+      }
+    }
+  },
+  "last_updated": {
+    "neural": "2026-03-14T09:24:46.664984+05:30",
+    "structural": null,
+    "ml": null,
+    "db": null,
+    "genesis": null
+  },
+  "decision_output": {
+    "action": "WAITING",
+    "headline": "SCANNING FOR SETUP",
+    "summary": "Confidence: 6.9% | Regime: RANGE_LOW_VOL",
+    "reasons": [
+      "Confidence 6.9% is below threshold 10%"
+    ],
+    "symbol": "NIFTY",
+    "bias": "Transition",
+    "regime": "RANGE_LOW_VOL",
+    "confidence": 6.9,
+    "grade": "AVOID",
+    "risk_status": "BLOCKED",
+    "entry_allowed": false,
+    "market_open": false,
+    "strategy_status": "WAITING FOR SETUP...",
+    "spot": 23151.1,
+    "targets": {
+      "entry": 23151.1,
+      "stop": "Dynamic",
+      "target": "Dynamic"
+    },
+    "option_plan": {
+      "strike": 23200.0,
+      "option_type": "PE"
+    },
+    "diagnostics": {},
+    "rationale": [
+      "Structure bias: Transition",
+      "Liquidity: No Sweep",
+      "Volume bias: Normal"
+    ]
+  },
+  "updated_at_utc": "2026-03-14T03:55:10.437389"
+}
