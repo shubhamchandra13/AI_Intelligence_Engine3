@@ -444,7 +444,10 @@ class InstitutionalPaperExecutionEngine:
             # 1. FETCH ACTUAL OPTION PREMIUM (LTP)
             # We explicitly fetch the LTP for the instrument_key. 
             # Passing 'price' (spot) as fallback is dangerous for options, so we default to None.
-            option_ltp = fetcher.get_option_ltp(ik)
+            if ik == "SIM_KEY":
+                option_ltp = price # Simulate option entry at spot price for replay mode
+            else:
+                option_ltp = fetcher.get_option_ltp(ik)
             
             if not option_ltp or option_ltp <= 0:
                 print(f"⚠️ SKIPPING TRADE: Could not fetch LTP for {ik}")

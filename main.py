@@ -257,13 +257,16 @@ def thread_sentiment_scan():
             time.sleep(120)
     except Exception as e: ui_log(f"Neural Error: {e}")
 
+from core.mode_manager import ModeManager
+from core.data_provider import DataProvider
+from engines.strategy_engine import StrategyEngine
+
+# Initialize core manager
+mode_manager = ModeManager()
+
 def thread_structure_scan():
     global ml_engine, dynamic_min_confidence
-    hmm_engine = HMMRegimeEngine(n_states=3)
-    pca_engine = DenoisingPCAEngine(n_components=3)
-    anomaly_engine = AnomalyDetectionEngine()
-    # 🧠 FIX: Separate engines for each symbol to prevent data mixing
-    lstm_engines = {sym: LSTMForecasterEngine(window_size=60, forecast_steps=10) for sym in SETTINGS["SYMBOLS"]}
+    strategy_engine = StrategyEngine()
     
     try:
         ml_engine = MLEvolutionEngine()
@@ -273,15 +276,16 @@ def thread_structure_scan():
 
     while True:
         try:
-            # ... (rest of the logic inside loop)
-            # Find where we detect regime and add HMM detection
-            # Search for 'reg = regime_engine.detect_regime(df)' in the original file
-            tuning_res = threshold_engine.maybe_tune(dynamic_min_confidence)
-            if SETTINGS.get("AUTO_TUNE_MIN_CONFIDENCE", True):
-                if tuning_res.get("status") == "tuned":
-                    old_c = dynamic_min_confidence
-                    dynamic_min_confidence = tuning_res["min_confidence"]
-                    ai_log(f"🧠 SELF-EVOLUTION: Confidence tuned {old_c} -> {dynamic_min_confidence}")
+            mode_manager.update_mode()
+            if mode_manager.get_mode() == "IDLE":
+                time.sleep(5)
+                continue
+
+            tuned, tuning_res = strategy_engine.update_thresholds()
+            if tuned:
+                old_c = dynamic_min_confidence
+                dynamic_min_confidence = tuning_res["min_confidence"]
+                ai_log(f"🧠 SELF-EVOLUTION: Confidence tuned {old_c} -> {dynamic_min_confidence}")
             else:
                 dynamic_min_confidence = SETTINGS.get("MIN_CONFIDENCE", 20)
                 if shared_state["scan_count"] % 15 == 0:
@@ -293,6 +297,15 @@ def thread_structure_scan():
             entry_paused = ctrl.get("overrides", {}).get("PAUSE_ENTRIES", False)
             with state_lock: current_sentiment = shared_state["news_sentiment"]
             detected_expiry = SETTINGS.get("EXPIRY_DATE")
+
+            # First pass to gather DataFrames
+            for sym in SETTINGS["SYMBOLS"]:
+                df_raw = data_fetcher.get_candles(sym, interval="1minute", limit=SETTINGS.get("CANDLE_LIMIT", 2000))
+                if df_raw is not None:
+                    df = pd.DataFrame(df_raw)
+                    df["timestamp"] = _to_ist_timestamp(df["timestamp"])
+                    df.set_index("timestamp", inplace=True)
+                    dfs[sym] = df
 
             for sym in SETTINGS["SYMBOLS"]:
                 instr_key = SETTINGS["INSTRUMENT_KEYS"].get(sym)
@@ -308,107 +321,16 @@ def thread_structure_scan():
                     ui_log(f"⚠️ Data Guard: {msg}")
                     continue
 
-                df_raw = data_fetcher.get_candles(sym, interval="1minute", limit=SETTINGS.get("CANDLE_LIMIT", 2000))
-                if df_raw is not None:
-                    df = pd.DataFrame(df_raw)
-                    df["timestamp"] = _to_ist_timestamp(df["timestamp"])
-                    df.set_index("timestamp", inplace=True)
-                    dfs[sym] = df
-                else: continue
+                df = dfs.get(sym)
+                if df is None: continue
 
-                struc = analyze_structure(df)
-                reg = regime_engine.detect_regime(df)
-                mtf = get_multi_timeframe_bias(df)
-                vs = vsa_engine.analyze(df)
-                liq = detect_liquidity(df)
-                fv = detect_fvg(df, struc["bias"].upper())
-                vol_exp = detect_volatility_expansion(df)
-                stk = evaluate_mtf_indicator_stack(df, SETTINGS.get("INDICATOR_MTF_RULES"), SETTINGS.get("INDICATOR_MTF_WEIGHTS"))
-                
-                # --- 🧠 LOCAL AI: HMM REGIME DETECTION ---
-                hmm_data = hmm_engine.detect_regime(df)
-                if hmm_data["label"] != "INITIALIZING":
-                    ai_log(f"🧠 HMM ENGINE ({sym}): State={hmm_data['label']} Conf={hmm_data['confidence']}%")
-                
-                # --- 🧠 LOCAL AI: PCA DENOISING (SIGNAL FILTER) ---
-                pca_data = pca_engine.get_clean_signal(df)
-                if pca_data["status"] != "INITIALIZING":
-                    ai_log(f"🧪 PCA FILTER ({sym}): Signal={pca_data['signal']} Noise={pca_data['noise_reduction']}%")
-                
-                # --- 🔮 LOCAL AI: LSTM PRICE FORECASTER ---
-                target_lstm = lstm_engines.get(sym)
-                lstm_data = {"status": "INITIALIZING", "direction": "NEUTRAL", "forecast_diff_pct": 0.0}
-                
-                if target_lstm:
-                    try:
-                        if shared_state["scan_count"] % 15 == 0: 
-                            target_lstm.train_incremental(df)
-                        
-                        res = target_lstm.predict_future(df)
-                        if res: lstm_data = res
-                    except: pass
-
-                if lstm_data.get("status") == "READY":
-                    ai_log(f"🔮 LSTM FORECAST ({sym}): {lstm_data['direction']} ({lstm_data['forecast_diff_pct']}%)")
-                
-                # Performance & Relative
-                candles_per_day = 375
-                five_day_idx = -min(len(df), candles_per_day * 5)
-                intraday_ret = ((s / df["close"].iloc[0]) - 1) * 1000 
-                swing_ret = ((s / df["close"].iloc[five_day_idx]) - 1) * 1000
-                rel_score = calculate_relative_score(intraday=intraday_ret, swing=swing_ret, atr_weight=0.5, momentum=stk.get("score", 50), bos=struc.get("bos", False))
-                
-                # --- 🔥 NEW ALGORITHMS INTEGRATION ---
-                depth = upstox_client.fetch_market_depth(instr_key)
-                ofi_data = order_book_engine.analyze(depth, current_price=s)
-                vol_forecast = vol_forecaster.forecast(df)
-                reg_v2 = regime_clustering_engine.detect_regime_v2(df)
-                
-                # --- 🔥 NEW LAYERS INTEGRATION ---
-                meta_engine.refresh_knowledge()
-                meta_mult, meta_reason = meta_engine.judge_setup(reg["regime"], 60)
-                trap_data = trap_engine.detect_trap(df)
-                
-                # --- 🚨 LOCAL AI: ANOMALY DETECTION ---
-                anomaly_data = anomaly_engine.check_anomaly(df)
-                if anomaly_data["is_anomaly"]:
-                    ai_log(f"🚨 ANOMALY DETECTED ({sym}): Score={anomaly_data['score']}")
-
-                other_sym = "BANKNIFTY" if sym == "NIFTY" else "NIFTY"
-                other_df = dfs.get(other_sym)
-                intel_data = market_intel.analyze_market_mode(df, other_df)
-                change_alert = market_intel.detect_sudden_change(df)
-                if change_alert: ui_log(change_alert)
-
-                conf = calculate_confidence(structure=struc, mtf_bias=mtf, liquidity=liq, fvg=fv, volatility=vol_exp, relative_score=rel_score, regime=reg, sentiment_score=current_sentiment*0.5, vsa_data=vs, ofi_data=ofi_data, hmm_data=hmm_data, pca_data=pca_data, lstm_data=lstm_data, anomaly_data=anomaly_data)
-                
-                # Meta-Adjustment
-                orig_c = conf["confidence"]
-                conf["confidence"] = min(100.0, orig_c * meta_mult)
-                if trap_data["status"] == "TRAP_DETECTED":
-                    conf["confidence"] = max(conf["confidence"], 85.0) # High conviction on trap recovery
-                
-                if intel_data["mode"] == "OPTION_SELLER_DOMINATED":
-                    conf["confidence"] *= 0.7 # Reduce aggression in seller markets
-                
-                # Option Chain
+                # Get Option Chain & IV Data first for the context
                 target_expiry = SETTINGS.get("EXPIRY_DATE")
                 if not target_expiry:
                     all_expiries = upstox_client.get_all_expiries(instr_key)
                     if all_expiries:
-                        if sym == "BANKNIFTY":
-                            # Always take Monthly (Last of the nearest 3-4 expiries usually covers the month)
-                            target_expiry = all_expiries[-1] if len(all_expiries) < 4 else all_expiries[3]
-                        else: # NIFTY
-                            # AI-Logic for NIFTY Expiry
-                            if conf["confidence"] >= 80:
-                                target_expiry = all_expiries[0] # Aggressive Current Week
-                            elif reg["volatility"] == "HIGH_VOL" or conf["confidence"] < 55:
-                                target_expiry = all_expiries[1] if len(all_expiries) > 1 else all_expiries[0] # Next Week for safety
-                            else:
-                                target_expiry = all_expiries[0] # Standard Current Week
+                        target_expiry = all_expiries[-1] if sym == "BANKNIFTY" and len(all_expiries) < 4 else all_expiries[0]
 
-                # Option Chain
                 strike_step = 100 if sym == "BANKNIFTY" else 50
                 chain = upstox_client.fetch_option_chain(instr_key, target_expiry)
                 detected_expiry = target_expiry if target_expiry else upstox_client.last_selected_expiry
@@ -424,26 +346,26 @@ def thread_structure_scan():
                                 if iv_val > 0: iv_data = iv_engine.analyze({"current_iv": iv_val})
                                 break
 
-                stats = trade_intelligence_engine.get_basic_stats()
-                d_risk = adaptive_risk_engine.calculate_dynamic_risk(confidence=conf["confidence"], regime=reg, iv_data=iv_data, intelligence_stats=stats)
-                
-                prediction = {"win_probability": 50.0}
-                if ml_engine:
-                    ml_setup = {"confidence": conf["confidence"], "indicator_score": stk.get("score", 50), "regime": reg["regime"], "news_sentiment": current_sentiment*0.5, "relative_score": rel_score, "direction": struc["bias"].upper()}
-                    prediction = ml_engine.predict_setup_probability(ml_setup)
-                
-                loc[sym] = {
-                    "spot": s, "structure": struc, "regime": reg, "confidence": conf, 
-                    "liquidity": liq, "fvg": fv, "vsa": vs, "indicator_stack": stk,
-                    "relative_score": rel_score, "ml_prediction": prediction,
-                    "high": df["high"].max(), "low": df["low"].min(),
-                    "iv_data": iv_data, "oi_data": {"bias": "NEUTRAL"}, "risk": d_risk,
-                    "ofi_data": ofi_data, "vol_forecast": vol_forecast, "reg_v2": reg_v2
+                # Prepare Market Context
+                depth = upstox_client.fetch_market_depth(instr_key)
+                ofi_data = order_book_engine.analyze(depth, current_price=s)
+                other_sym = "BANKNIFTY" if sym == "NIFTY" else "NIFTY"
+                other_df = dfs.get(other_sym)
+
+                market_context = {
+                    "iv_data": iv_data,
+                    "ofi_data": ofi_data,
+                    "sentiment": current_sentiment,
+                    "other_df": other_df
                 }
+
+                # --- 🧠 RUN STRATEGY ENGINE ---
+                analysis_result = strategy_engine.analyze_symbol(sym, df, s, market_context)
                 
-                # 🔥 CRITICAL FIX: Update shared_state analysis_map immediately
-                with state_lock:
-                    shared_state["analysis_map"][sym] = loc[sym]
+                if analysis_result:
+                    loc[sym] = analysis_result
+                    with state_lock:
+                        shared_state["analysis_map"][sym] = loc[sym]
 
             b, reason = select_best_index(loc)
             
@@ -452,8 +374,9 @@ def thread_structure_scan():
             new_decision = shared_state["decision_output"].copy()
             
             if best_data:
-                conf_val = best_data["confidence"]["confidence"]
-                action = "READY" if conf_val >= dynamic_min_confidence else "WAITING"
+                decision_res = strategy_engine.make_decision(best_data)
+                action = decision_res["action"]
+                conf_val = decision_res["confidence"]
                 
                 # Grade logic
                 grade = "AVOID"

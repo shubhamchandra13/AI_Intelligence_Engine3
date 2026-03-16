@@ -110,7 +110,15 @@ class TradeLogger:
             "entry_time": "TEXT",
             "exit_time": "TEXT",
             "trade_duration": "REAL",
-            "setup_json": "TEXT"
+            "setup_json": "TEXT",
+            "trade_mode": "TEXT",
+            "session_type": "TEXT",
+            "strategy_version": "TEXT",
+            "config_version": "TEXT",
+            "replay_batch_id": "TEXT",
+            "market_regime": "TEXT",
+            "confidence_bucket": "TEXT",
+            "data_source": "TEXT"
         }
 
         cursor = self.conn.cursor()
@@ -253,9 +261,11 @@ class TradeLogger:
             INSERT INTO trades (
                 index_name, direction, entry_price, exit_price, pnl, r_multiple, confidence,
                 risk_percent, capital_before, capital_after, exit_reason, regime, iv_regime,
-                theta_risk, risk_used, target_used, entry_time, exit_time, trade_duration, setup_json
+                theta_risk, risk_used, target_used, entry_time, exit_time, trade_duration, setup_json,
+                trade_mode, session_type, strategy_version, config_version, replay_batch_id,
+                market_regime, confidence_bucket, data_source
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """
 
             values = (
@@ -278,7 +288,15 @@ class TradeLogger:
                 trade_data.get("entry_time"),
                 trade_data.get("exit_time"),
                 trade_data.get("trade_duration"),
-                trade_data.get("setup_json")
+                trade_data.get("setup_json"),
+                trade_data.get("trade_mode", "LIVE_PAPER"),
+                trade_data.get("session_type", "INTRADAY"),
+                trade_data.get("strategy_version", "1.0"),
+                trade_data.get("config_version", "1.0"),
+                trade_data.get("replay_batch_id", None),
+                trade_data.get("market_regime", trade_data.get("regime", "UNKNOWN")),
+                trade_data.get("confidence_bucket", f"{int(trade_data.get('confidence', 0)//10)*10}s"),
+                trade_data.get("data_source", "UPSTOX")
             )
 
             cursor = self.conn.execute(query, values)

@@ -135,6 +135,14 @@ SETTINGS = {
     # ================= EXPIRY =================
     "EXPIRY_DATE": None,
 
+    # ================= REPLAY SETTINGS =================
+    "REPLAY_LOOKBACK_MONTHS": 3,
+    "REPLAY_SYMBOLS": ["BANKNIFTY", "NIFTY"],
+    "REPLAY_INTERVAL": "1minute",
+    "REPLAY_MAX_DAYS_PER_BATCH": 30,
+    "REPLAY_START_DATE": None,
+    "REPLAY_END_DATE": None,
+
     # ================= DERIVATIVES KEYS =================
     "INSTRUMENT_KEYS": {
         "BANKNIFTY": "NSE_INDEX|Nifty Bank",

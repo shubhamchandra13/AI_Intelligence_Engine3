@@ -63,6 +63,38 @@ function humanValue(value) {
   return String(value);
 }
 
+function renderEvolution(evalData, configData) {
+  const evolutionGrid = document.getElementById("evolution-grid");
+  if (!evolutionGrid) return;
+  evolutionGrid.innerHTML = "";
+
+  const live = evalData.live || {};
+  const replay = evalData.replay || {};
+
+  const fields = [
+    { label: "Active Config Version", value: configData.version || "N/A" },
+    { label: "Live Win Rate", value: live.win_rate !== undefined ? live.win_rate + "%" : "N/A" },
+    { label: "Live Trades", value: live.total_trades || 0 },
+    { label: "Live Expectancy", value: live.expectancy !== undefined ? live.expectancy : "N/A" },
+    { label: "Replay Win Rate", value: replay.win_rate !== undefined ? replay.win_rate + "%" : "N/A" },
+    { label: "Replay Trades", value: replay.total_trades || 0 },
+    { label: "Target Multiplier", value: configData.target_multiplier || "N/A" },
+    { label: "Min Confidence", value: configData.min_confidence || "N/A" }
+  ];
+
+  fields.forEach(({ label, value }) => {
+    const cell = document.createElement("div");
+    cell.className = "kv";
+    const prefix = document.createElement("span");
+    prefix.textContent = label;
+    const strong = document.createElement("strong");
+    strong.textContent = value;
+    cell.appendChild(prefix);
+    cell.appendChild(strong);
+    evolutionGrid.appendChild(cell);
+  });
+}
+
 function renderSummary(state) {
   summaryGrid.innerHTML = "";
   summaryFields.forEach(({ label, getter }) => {
@@ -397,6 +429,19 @@ async function runUpdate(userInitiated) {
     renderDecision(state);
     renderTables(state);
     renderIntelligence(state);
+
+    // Fetch new endpoints
+    try {
+      const evalRes = await fetch("/api/evaluation-stats");
+      const configRes = await fetch("/api/config-status");
+      if(evalRes.ok && configRes.ok) {
+        const evalData = await evalRes.json();
+        const configData = await configRes.json();
+        renderEvolution(evalData, configData);
+      }
+    } catch(e) {
+      console.warn("Could not fetch evolution data", e);
+    }
 
     allReports = state.intelligence_reports || [];
     // Only update list if user isn't currently searching to avoid resetting view

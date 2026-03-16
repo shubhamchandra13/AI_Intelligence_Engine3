@@ -39,6 +39,10 @@ def proxy_chat(body: Dict[str, Any]):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+from engines.evaluation_engine import EvaluationEngine
+from engines.config_evolution_engine import ConfigEvolutionEngine
+import json
+
 @app.get("/api/runtime-state")
 def runtime_state():
     state = read_runtime_state()
@@ -47,6 +51,22 @@ def runtime_state():
     payload = dict(state)
     payload["served_at_utc"] = datetime.utcnow().isoformat()
     return payload
+
+@app.get("/api/evaluation-stats")
+def evaluation_stats():
+    eval_engine = EvaluationEngine()
+    live_stats = eval_engine.evaluate_performance(trade_mode="LIVE_PAPER")
+    replay_stats = eval_engine.evaluate_performance(trade_mode="HISTORICAL_REPLAY")
+    return {
+        "live": live_stats,
+        "replay": replay_stats
+    }
+
+@app.get("/api/config-status")
+def config_status():
+    config_engine = ConfigEvolutionEngine()
+    return config_engine.current_config
+
 
 
 @app.get("/api/health")

@@ -1,8 +1,8 @@
 {
-    "ema_fast": 10,
-    "ema_slow": 24,
+    "ema_fast": 11,
+    "ema_slow": 31,
     "atr_period": 10,
-    "supertrend_mult": 2.8,
-    "rsi_period": 7,
-    "fib_lookback": 72
+    "supertrend_mult": 3.7,
+    "rsi_period": 21,
+    "fib_lookback": 40
 }
